@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Search from "./Search";
 import styles from "@/styles/Header.module.css";
 export default function Header() {
 	return (
@@ -8,6 +9,7 @@ export default function Header() {
 					<a>Dj Events</a>
 				</Link>
 			</div>
+			<Search/>
 			<nav>
 				<ul>
 					<li>
