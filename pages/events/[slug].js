@@ -23,12 +23,12 @@ export default function SingleEvent({evt}) {
 						</a>
 					</div>
 					<span>
-						{evt.date} at {evt.time}
+						{new Date(evt.date).toLocaleDateString('en-US')} at {evt.time}
 					</span>
 					<h1>{evt.name}</h1>
 					{evt.image && (
 						<div className={styles.image}>
-							<Image src={evt.image} width={960} height={600} />
+							<Image src={evt.image.formats.medium.url} width={960} height={600} />
 						</div>
 					)}
 
@@ -48,7 +48,7 @@ export default function SingleEvent({evt}) {
 }
 
 export async function getServerSideProps({query:{slug}}){
-const res = await fetch(`${API_URL}/api/events/${slug}`)
+const res = await fetch(`${API_URL}/events?slug=${slug}`)
 const event = await res.json()
 
 return{
