@@ -3,6 +3,10 @@ import { useRouter } from "next/router";
 import Link from "next/dist/client/link";
 import Layout from "@/components/Layout";
 import styles from "@/styles/Form.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { API_URL } from "@/config/";
+
 export default function add() {
 	const router = useRouter();
 	const [values, setValues] = useState({
@@ -10,12 +14,24 @@ export default function add() {
 		performers: "",
 		address: "",
 		date: "",
+		venue: "",
 		time: "",
 		description: "",
 	});
 	const handleSubmit = (e) => {
 		e.preventDefault();
-        console.log(values);
+		const hasEmptyFields = Object.values(values).some(
+			(element) => element === ""
+		);
+		if (hasEmptyFields) {
+			toast.error("are you kinding mee");
+            const res = await fetch(`${API_URL}/events`,{
+                method:"POST",
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            })
+		}
 	};
 	const handleInputChange = (e) => {
 		e.preventDefault();
@@ -26,6 +42,7 @@ export default function add() {
 		<Layout title='Add New Event'>
 			<Link href='/events'>Go Back</Link>
 			<h1>ADD EVENTS</h1>
+            <ToastContainer/>
 			<form onSubmit={handleSubmit} className={styles.form}>
 				<div className={styles.grid}>
 					<div>
