@@ -9,12 +9,17 @@ export default function Header() {
 					<a>Dj Events</a>
 				</Link>
 			</div>
-			<Search/>
+			<Search />
 			<nav>
 				<ul>
 					<li>
 						<Link href='/events'>
 							<a>Events</a>
+						</Link>
+					</li>
+					<li>
+						<Link href='/events/add'>
+							<a>Add Events</a>
 						</Link>
 					</li>
 				</ul>
