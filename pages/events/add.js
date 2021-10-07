@@ -25,20 +25,19 @@ export default function add() {
 		);
 		if (hasEmptyFields) {
 			toast.error("are you kinding mee");
-
-			const res = await fetch(`${API_URL}/events`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(values),
-			});
-			if (!res.ok) {
-				toast.error("Somethig went Wrong");
-			} else {
-				const evt = await res.json();
-				router.push(`/events/${evt.slug}`);
-			}
+		}
+		const res = await fetch(`${API_URL}/events`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(values),
+		});
+		if (!res.ok) {
+			toast.error("Somethig went Wrong");
+		} else {
+			const evt = await res.json();
+			router.push(`/events/${evt.slug}`);
 		}
 	};
 	const handleInputChange = (e) => {
