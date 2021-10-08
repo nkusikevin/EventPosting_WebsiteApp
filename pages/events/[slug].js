@@ -27,7 +27,7 @@ export default function SingleEvent({ evt }) {
 		<Layout>
 			<div className={styles.event}>
 				<div className={styles.control}>
-					<Link href={`/event/edit/${evt.id}`}>
+					<Link href={`/events/edit/${evt.id}`}>
 						<a>
 							<FaPencilAlt />
 							Edit Event
