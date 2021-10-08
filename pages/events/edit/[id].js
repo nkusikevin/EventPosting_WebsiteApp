@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/dist/client/link";
 import Layout from "@/components/Layout";
 import Modal from '@/components/Modal'
+import ImageUpload from "@/components/ImageUpload";
 import Image from "next/image";
 import styles from "@/styles/Form.module.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -53,6 +54,13 @@ export default function EditEventsPage({ evt }) {
 		const { name, value } = e.target;
 		setValues({ ...values, [name]: value });
 	};
+  const imageUploaded = async (e) => {
+		const res = await fetch(`${API_URL}/events/${evt.id}`);
+		const data = await res.json();
+		setImagePreview(data.image.formats.thumbnail.url);
+		setShowModal(false);
+	};
+
 	return (
 		<Layout title='Add New Event'>
 			<Link href='/events'>Go Back</Link>
@@ -148,7 +156,7 @@ export default function EditEventsPage({ evt }) {
                 </button>
             </div>
 			<Modal show={showModal} onClose={()=> setShowModal(false)}> 
-				Upload Image
+				<ImageUpload evtId={evt.id} imageUploaded={imageUploaded}/>
 			</Modal>
 		</Layout>
 	);
