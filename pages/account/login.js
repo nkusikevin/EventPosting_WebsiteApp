@@ -10,12 +10,12 @@ import styles from "@/styles/Auth.module.css";
 export default function LoginPage() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-const {logIn , error} = useContext(AuthContext)
+	const { logIn, error } = useContext(AuthContext);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		logIn({ email, password });
 	};
-
+	useEffect(() => error && toast.error(error));
 	return (
 		<Layout title='User Login'>
 			<div className={styles.auth}>
