@@ -11,7 +11,21 @@ export const AuthProvider = ({ children }) => {
 	useEffect(() => checkUserLoggedIn(), []);
 
 	const register = async (user) => {
-		console.log(user);
+		const res = await fetch(`${NEXT_URL}/api/register`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(user),
+		});
+		const data = await res.json();
+		if (res.ok) {
+			setUser(data.user);
+			router.push("/account/dashboard");
+		} else {
+			setError(data.message);
+			setError(null);
+		}
 	};
 
 	const logIn = async ({ email: identifier, password }) => {
@@ -38,12 +52,12 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	const logOut = async () => {
-		const res = await fetch(`${NEXT_URL}/api/logout`,{
-			method:'POST'
-		})
-		if(res.ok){
-			setUser(null)
-			router.push('/')
+		const res = await fetch(`${NEXT_URL}/api/logout`, {
+			method: "POST",
+		});
+		if (res.ok) {
+			setUser(null);
+			router.push("/");
 		}
 	};
 
