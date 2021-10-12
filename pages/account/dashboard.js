@@ -4,7 +4,7 @@ import {parseCookies} from "@/helper/index"
 import Layout from "@/components/Layout";
 
 export default function dashboard({events}) {
-	console.log(events);
+	// console.log(events);
 	return (
 		<Layout title='Dashboard'>
 			<h1>Welcome</h1>
