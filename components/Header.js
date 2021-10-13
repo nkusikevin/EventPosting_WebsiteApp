@@ -23,7 +23,7 @@ export default function Header() {
 					</li>
 					{user ? (
 						<>
-						{/* if user is loged in */}
+							{/* if user is loged in */}
 							<li>
 								<Link href='/events/add'>
 									<a>Add Events</a>
@@ -46,7 +46,7 @@ export default function Header() {
 						</>
 					) : (
 						<>
-						{/* if not loged in */}
+							{/* if not loged in */}
 							<li>
 								<Link href='/account/login'>
 									<a className='btn-secondary btn-icon'>
