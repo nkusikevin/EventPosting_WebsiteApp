@@ -67,6 +67,7 @@ export const AuthProvider = ({ children }) => {
 		if (res.ok) {
 			setUser(data.user);
 		} else {
+			router.push("/account/login");
 			setUser(null);
 		}
 	};

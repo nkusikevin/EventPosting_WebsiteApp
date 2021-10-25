@@ -7,14 +7,13 @@ import styles from "@/styles/Dashboard.module.css";
 export default function DashboardPage({events}) {
 	return (
 		<Layout title='User Dashboard'>
-			<h1>Dashboard</h1>
 			<div className={styles.dash}>
 				<h1>Dashboard</h1>
 				<h3>My Events</h3>
 
-				{events.map((evt) => (
+				{/* {events.map((evt) => (
 					<DashboardEvent key={evt.id} evt={evt} handleDelete={deleteEvent} />
-				))}
+				))} */}
 			</div>
 		</Layout>
 	);

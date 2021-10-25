@@ -10,7 +10,7 @@ export default function Header() {
 		<header className={styles.header}>
 			<div className={styles.logo}>
 				<Link href='/'>
-					<a>Dj Events</a>
+					<a> KGL Dj Events</a>
 				</Link>
 			</div>
 			<Search />
