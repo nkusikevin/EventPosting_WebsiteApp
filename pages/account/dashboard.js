@@ -5,15 +5,18 @@ import { API_URL } from "@/config/index";
 import styles from "@/styles/Dashboard.module.css";
 
 export default function DashboardPage({ events }) {
+	 const deleteEvent = (id) => {
+			console.log(id);
+		};
 	return (
 		<Layout title='User Dashboard'>
 			<div className={styles.dash}>
 				<h1>Dashboard</h1>
 				<h3>My Event</h3>
 
-				{/* {events.map((evt) => (
+				{events.map((evt) => (
 					<DashboardEvent key={evt.id} evt={evt} handleDelete={deleteEvent} />
-				))} */}
+				))}
 			</div>
 		</Layout>
 	);
@@ -30,7 +33,6 @@ export async function getServerSideProps({ req }) {
 	});
 
 	const events = await res.json();
-
 	return {
 		props: {
 			events,

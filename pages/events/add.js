@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/dist/client/link";
+import { parseCookies } from "@/helper/index";
 import Layout from "@/components/Layout";
 import styles from "@/styles/Form.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { API_URL } from "@/config/index";
 
-export default function add() {
+export default function add({ token }) {
 	const router = useRouter();
 	const [values, setValues] = useState({
 		name: "",
@@ -30,10 +31,15 @@ export default function add() {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
 			},
 			body: JSON.stringify(values),
 		});
 		if (!res.ok) {
+			if (res.status === 403 || res.status === 401) {
+				toast.error("No Token included");
+				return;
+			}
 			toast.error("Somethig went Wrong");
 		} else {
 			const evt = await res.json();
@@ -128,4 +134,14 @@ export default function add() {
 			</form>
 		</Layout>
 	);
+}
+
+export async function getServerSideProps({ req }) {
+	const { token } = parseCookies(req);
+
+	return {
+		props: {
+			token,
+		},
+	};
 }
