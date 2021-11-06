@@ -156,13 +156,17 @@ export default function EditEventsPage({ evt ,token}) {
 					<p>No Image Uploaded</p>
 				</div>
 			)}
-            <div>
-                <button className="btn-secondary" onClick={()=>setShowModal(true)}>
-                <FaImage/> Set Image    
-                </button>
-            </div>
-			<Modal show={showModal} onClose={()=> setShowModal(false)}> 
-				<ImageUpload evtId={evt.id} imageUploaded={imageUploaded}/>
+			<div>
+				<button className='btn-secondary' onClick={() => setShowModal(true)}>
+					<FaImage /> Set Image
+				</button>
+			</div>
+			<Modal show={showModal} onClose={() => setShowModal(false)}>
+				<ImageUpload
+					evtId={evt.id}
+					imageUploaded={imageUploaded}
+					token={token}
+				/>
 			</Modal>
 		</Layout>
 	);

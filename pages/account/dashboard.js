@@ -1,5 +1,6 @@
 import { parseCookies } from "@/helper/index";
 import Layout from "@/components/Layout";
+import { useRouter } from "next/router";
 import DashboardEvent from "@/components/DashboardEvent";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/Dashboard.module.css";
@@ -7,8 +8,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function DashboardPage({ events ,token}) {
+	const router = useRouter();
 	 const deleteEvent = async(id) => {
 			if (confirm("Are you sure")) {
+				console.log(token);
 				const res = await fetch(`${API_URL}/events/${id}`, {
 					method: "DELETE",
 					headers: {
