@@ -9,20 +9,6 @@ import styles from "@/styles/Event.module.css";
 import { useRouter } from "next/router";
 export default function SingleEvent({ evt }) {
 	const router  = useRouter()
-	const deleteHandler = async() => {
-		if(confirm("Are you sure")){
-		 const res =  await fetch(`${API_URL}/events/${evt.id}`,{
-			 method:'DELETE'
-
-		 })
-		 const data = await res.json()
-		 if(!res.ok){
-			 toast.error(data.message)
-		 }else{
-			 router.push('/events')
-		 }
-		}
-	};
 	return (
 		<Layout>
 			<div className={styles.event}>
