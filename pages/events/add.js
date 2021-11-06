@@ -21,6 +21,7 @@ export default function add({ token }) {
 	});
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		console.log("yoo=="+token);
 		const hasEmptyFields = Object.values(values).some(
 			(element) => element === ""
 		);

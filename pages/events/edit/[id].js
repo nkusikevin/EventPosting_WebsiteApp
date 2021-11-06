@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
+import { parseCookies } from "@/helper/index";
 import {FaImage} from 'react-icons/fa'
 import { useRouter } from "next/router";
 import Link from "next/dist/client/link";
@@ -12,7 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { API_URL } from "@/config/index";
 
-export default function EditEventsPage({ evt }) {
+export default function EditEventsPage({ evt ,token}) {
 	const router = useRouter();
 	const [showModal , setShowModal] = useState(false)
 	const [values, setValues] = useState({
@@ -39,10 +40,15 @@ export default function EditEventsPage({ evt }) {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
 			},
 			body: JSON.stringify(values),
 		});
 		if (!res.ok) {
+			if (res.status === 403 || res.status === 401) {
+				toast.error("No Token included");
+				return;
+			}
 			toast.error("Somethig went Wrong");
 		} else {
 			const evt = await res.json();
@@ -162,12 +168,15 @@ export default function EditEventsPage({ evt }) {
 	);
 }
 
-export async function getServerSideProps({ params: { id } }) {
+export async function getServerSideProps({ params: { id } ,req}) {
+	const { token } = parseCookies(req);
+
 	const res = await fetch(`${API_URL}/events/${id}`);
 	const evt = await res.json();
 	return {
 		props: {
 			evt,
+			token
 		},
 	};
 }
