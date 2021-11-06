@@ -26,7 +26,7 @@ export default function SingleEvent({ evt }) {
 	return (
 		<Layout>
 			<div className={styles.event}>
-				<div className={styles.control}>
+				{/* <div className={styles.control}>
 					<Link href={`/events/edit/${evt.id}`}>
 						<a>
 							<FaPencilAlt />
@@ -36,7 +36,7 @@ export default function SingleEvent({ evt }) {
 					<a href='#' className={styles.delete} onClick={deleteHandler}>
 						<FaTimes /> Delete Event
 					</a>
-				</div>
+				</div> */}
 				<span>
 					{new Date(evt.date).toLocaleDateString("en-US")} at {evt.time}
 				</span>
