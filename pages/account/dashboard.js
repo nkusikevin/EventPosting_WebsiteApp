@@ -31,7 +31,7 @@ export default function DashboardPage({ events ,token}) {
 		<Layout title='User Dashboard'>
 			<ToastContainer />
 			<div className={styles.dash}>
-				<h1>Dashboard</h1>
+				<h1>Welcome Back :)</h1>
 				<h3>My Event</h3>
 
 				{events.map((evt) => (
